@@ -1,0 +1,56 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Luxurious+Script&display=swap');
+
+@font-face {
+  font-family: "Beautifully Delicious";
+  src:
+    local("Beautifully Delicious Script Regular"),
+    local("Beautifully-Delicious-Script-Regular"),
+    url("BDScript-Regular.woff2") format("woff2"),
+    url("BDScript-Regular.woff") format("woff"),
+    url("BDScript-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  /* --font-script: "Luxurious Script", cursive; */
+  --font-script: "Beautifully Delicious", cursive;
+  --font-typewriter: "Special Elite", "Courier New", Courier, monospace;
+  --color-ink: #1a1a1a;
+  --color-paper: #f3eee4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--color-ink);
+  background-color: var(--color-paper);
+  background-image: url("/assets/paper-texture.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  font-family: var(--font-typewriter);
+  overflow-x: hidden;
+}
+
+img {
+  max-width: none;
+  display: block;
+}
+
+.font-script {
+  font-family: var(--font-script);
+}
+
+.font-typewriter {
+  font-family: var(--font-typewriter);
+}
