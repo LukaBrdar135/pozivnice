@@ -155,8 +155,11 @@ const addToCalendar = () => {
 
     <!-- CELEBRATE COLLAGE -->
     <section class="collage relative overflow-hidden py-16">
-      <div class="absolute inset-0 bg-cover bg-center grayscale" style="background-image: url('/assets/night-sky.jpg')"
-        aria-hidden="true" />
+      <div
+        class="absolute inset-0 bg-cover bg-center grayscale"
+        :style="{ backgroundImage: `url('${import.meta.env.BASE_URL}assets/night-sky.jpg')` }"
+        aria-hidden="true"
+      />
       <div class="absolute inset-0 bg-black/25" aria-hidden="true" />
 
       <div class="relative mx-auto h-[420px] w-[min(92vw,360px)]">
