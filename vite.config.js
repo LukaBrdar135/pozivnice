@@ -7,6 +7,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
+  base: process.env.GITHUB_PAGES === 'true' ? '/pozivnice/' : '/',
   plugins: [vue(), vueJsx(), vueDevTools(), tailwindcss()],
   resolve: {
     alias: {
