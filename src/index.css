@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Luxurious+Script&display=swap');
 
 @font-face {
   font-family: "Beautifully Delicious";
@@ -15,7 +14,6 @@
 }
 
 @theme {
-  /* --font-script: "Luxurious Script", cursive; */
   --font-script: "Beautifully Delicious", cursive;
   --font-typewriter: "Special Elite", "Courier New", Courier, monospace;
   --color-ink: #1a1a1a;
