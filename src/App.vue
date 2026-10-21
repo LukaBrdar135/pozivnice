@@ -3,6 +3,7 @@ import { ref } from 'vue'
 
 const mapsUrl = 'https://maps.google.com/?cid=17048520087372756887'
 const formUrl = 'https://api.sheetmonkey.io/form/6tBMVmvJ24ZcXDCj31yvke'
+const nightSkyUrl = `${import.meta.env.BASE_URL}assets/night-sky.jpg`
 
 const schedule = [
   { time: '16H', text: 'DOLAZAK GOSTIJU U RESTORAN' },
@@ -157,7 +158,7 @@ const addToCalendar = () => {
     <section class="collage relative overflow-hidden py-16">
       <div
         class="absolute inset-0 bg-cover bg-center grayscale"
-        :style="{ backgroundImage: `url('${import.meta.env.BASE_URL}assets/night-sky.jpg')` }"
+        :style="{ backgroundImage: `url('${nightSkyUrl}')` }"
         aria-hidden="true"
       />
       <div class="absolute inset-0 bg-black/25" aria-hidden="true" />
