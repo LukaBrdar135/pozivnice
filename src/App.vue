@@ -119,7 +119,7 @@ const addToCalendar = () => {
 <template>
   <div class="invite mx-auto w-full max-w-md overflow-x-hidden text-ink">
     <!-- HERO -->
-    <section class="hero relative flex min-h-[100svh] flex-col px-5 pb-10 pt-10">
+    <section class="relative flex min-h-[100svh] flex-col px-5 pb-10 pt-10">
       <h1
         class="font-script relative mx-auto flex flex-col items-center gap-1 text-center text-[clamp(2.75rem,7rem,10rem)] tracking-tighter leading-[0.6]">
         <span class="whitespace-nowrap">Anja &amp; Luka</span>
@@ -156,11 +156,8 @@ const addToCalendar = () => {
 
     <!-- CELEBRATE COLLAGE -->
     <section class="collage relative overflow-hidden py-16">
-      <div
-        class="absolute inset-0 bg-cover bg-center grayscale"
-        :style="{ backgroundImage: `url('${nightSkyUrl}')` }"
-        aria-hidden="true"
-      />
+      <div class="absolute inset-0 bg-cover bg-center grayscale" :style="{ backgroundImage: `url('${nightSkyUrl}')` }"
+        aria-hidden="true" />
       <div class="absolute inset-0 bg-black/25" aria-hidden="true" />
 
       <div class="relative mx-auto h-[420px] w-[min(92vw,360px)]">
@@ -341,12 +338,6 @@ button {
   border: none;
   cursor: pointer;
   color: inherit;
-}
-
-.hero {
-  background-image: url('/assets/paper-texture.jpg');
-  background-size: cover;
-  background-position: center;
 }
 
 .lace-card {
