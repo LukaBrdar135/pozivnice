@@ -3,7 +3,7 @@ import { ref } from 'vue'
 
 const mapsUrl = 'https://maps.google.com/?cid=17048520087372756887'
 const formUrl = 'https://api.sheetmonkey.io/form/6tBMVmvJ24ZcXDCj31yvke'
-const nightSkyUrl = `${import.meta.env.BASE_URL}assets/night-sky.jpg`
+const nightSkyUrl = `${import.meta.env.BASE_URL}assets/sky.jpg`
 
 const schedule = [
   { time: '16H', text: 'DOLAZAK GOSTIJU U RESTORAN' },
@@ -121,10 +121,10 @@ const addToCalendar = () => {
     <!-- HERO -->
     <section class="relative flex min-h-[100svh] flex-col px-5 pb-10 pt-10">
       <h1
-        class="font-script relative mx-auto flex flex-col items-center gap-1 text-center text-[clamp(2.75rem,7rem,10rem)] tracking-tighter leading-[0.6]">
-        <span class="whitespace-nowrap">Anja &amp; Luka</span>
+        class="font-script relative mx-auto flex flex-col items-center gap-1 text-center text-[clamp(2.75rem,5.5rem,10rem)] leading-[0.6]">
+        <span class="whitespace-nowrap -ml-2">Anja &amp; Luka</span>
         <span class="text-[0.92em]">vas pozivaju na</span>
-        <span class="relative pb-3 text-[0.92em]">
+        <span class="relative pb-3 text-[0.92em] pt-1">
           venčanje
           <img src="/assets/underline.png" alt=""
             class="pointer-events-none absolute -bottom-1 left-1/2 w-[min(280px,85vw)] -translate-x-1/2"
@@ -139,8 +139,8 @@ const addToCalendar = () => {
       <div class="mt-6 flex flex-1 items-center justify-center">
         <div
           class="polaroid w-[min(72vw,280px)] rotate-[7deg] border-[10px] border-b-[22px] border-white bg-white shadow-[0_12px_28px_rgba(0,0,0,0.22)]">
-          <img src="/assets/us-at-sea.jpg" alt="Anja i Luka"
-            class="aspect-square w-full object-cover object-center grayscale" />
+          <img src="/assets/us-at-sea-in-color.jpg" alt="Anja i Luka"
+            class="aspect-square w-full object-cover object-center" />
         </div>
       </div>
 
@@ -150,42 +150,42 @@ const addToCalendar = () => {
         <div class="leading-snug">
           <p>Restoran Verde,</p>
           <p>Zrenjaninski put 106A</p>
+          <p>Beograd</p>
         </div>
       </div>
     </section>
 
     <!-- CELEBRATE COLLAGE -->
     <section class="collage relative overflow-hidden py-16">
-      <div class="absolute inset-0 bg-cover bg-center grayscale" :style="{ backgroundImage: `url('${nightSkyUrl}')` }"
+      <div class="absolute inset-0 bg-cover bg-center" :style="{ backgroundImage: `url('${nightSkyUrl}')` }"
         aria-hidden="true" />
       <div class="absolute inset-0 bg-black/25" aria-hidden="true" />
 
       <div class="relative mx-auto h-[420px] w-[min(92vw,360px)]">
         <!-- Envelope -->
         <img src="/assets/envelope.png" alt=""
-          class="absolute bottom-4 left-1/2 w-[78%] -translate-x-1/2 drop-shadow-lg" aria-hidden="true" />
+          class="absolute bottom-4 left-1/2 w-[80%] -translate-x-1/2 drop-shadow-lg" aria-hidden="true" />
 
         <!-- Couple polaroid -->
         <div
-          class="absolute top-8 left-2 w-[48%] -rotate-[14deg] border-[8px] border-white bg-white shadow-[0_10px_24px_rgba(0,0,0,0.35)]">
-          <img src="/assets/couple-collage.jpg" alt="" class="aspect-[4/5] w-full object-cover grayscale"
-            aria-hidden="true" />
+          class="absolute top-8 -left-2 w-[48%] -rotate-[14deg] border-[8px] border-white bg-white shadow-[0_10px_24px_rgba(0,0,0,0.35)]">
+          <img src="/assets/couple-in-color.jpg" alt="" class="aspect-[4/5] w-full object-cover" aria-hidden="true" />
         </div>
 
         <!-- Lace card -->
         <div
-          class="lace-card absolute top-55 right-0 flex w-[58%] rotate-[12deg] flex-col items-center justify-center gap-3 px-5 py-9 text-center shadow-[0_10px_24px_rgba(0,0,0,0.28)]">
+          class="lace-card absolute top-35 right-0 flex w-[58%] rotate-[12deg] flex-col items-center justify-center gap-3 px-5 py-9 text-center shadow-[0_10px_24px_rgba(0,0,0,0.28)]">
           <img src="/assets/lace.png" alt="" class="lace-edge lace-top" aria-hidden="true" />
           <img src="/assets/lace.png" alt="" class="lace-edge lace-bottom" aria-hidden="true" />
           <img src="/assets/lace.png" alt="" class="lace-edge lace-side lace-left" aria-hidden="true" />
           <img src="/assets/lace.png" alt="" class="lace-edge lace-side lace-right" aria-hidden="true" />
-          <p class="font-typewriter relative z-10 text-[0.65rem] font-bold tracking-wide uppercase">
+          <p class="font-typewriter relative z-10 text-[0.8rem] font-bold tracking-wide uppercase">
             April, 17.2027.
           </p>
-          <p class="font-script relative z-10 text-[2rem] leading-[0.8]">
+          <p class="font-script relative z-10 text-[2.5rem] leading-[0.8]">
             Hajde da proslavimo zajedno!!!
           </p>
-          <p class="font-typewriter relative z-10 text-[0.7rem] font-bold tracking-wide uppercase">
+          <p class="font-typewriter relative z-10 text-[0.8rem] font-bold tracking-wide uppercase">
             Anja &amp; Luka
           </p>
         </div>
@@ -195,15 +195,15 @@ const addToCalendar = () => {
     <!-- PROSLAVA / VENUE -->
     <section class="px-5 py-14">
       <div class="relative mx-auto mb-10 max-w-[20rem] text-center">
-        <h2 class="font-script text-[clamp(2.4rem,4rem,10rem)] leading-[1.05] tracking-tighter">
+        <h2 class="font-script text-[clamp(2.4rem,4rem,10rem)] leading-[0.8]">
           Proslava pod zvezdama
         </h2>
         <img src="/assets/scribble.png" alt="" class="mx-auto mt-1 w-[85%]" aria-hidden="true" />
       </div>
 
       <div class="flex flex-col items-center gap-6">
-        <img src="/assets/venue.jpg" alt="Restoran Verde"
-          class="w-full max-w-[280px] object-cover grayscale shadow-[0_8px_20px_rgba(0,0,0,0.15)]" />
+        <img src="/assets/verde-in-color.jpg" alt="Restoran Verde"
+          class="w-full max-w-[280px] object-cover shadow-[0_8px_20px_rgba(0,0,0,0.15)]" />
 
         <p class="font-typewriter max-w-[22rem] text-center text-[0.95rem] leading-relaxed">
           Restoran Verde se nalazi na adresi Zrenjaninski put 106A u Borči. Prijem zvanica će biti sa
@@ -213,7 +213,7 @@ const addToCalendar = () => {
         <a :href="mapsUrl" target="_blank" rel="noopener noreferrer"
           class="inline-flex min-h-14 min-w-14 items-center justify-center transition-transform active:scale-95"
           aria-label="Otvori lokaciju na mapi">
-          <img src="/assets/map-icon.png" alt="" class="h-16 w-auto" aria-hidden="true" />
+          <img src="/assets/map-icon.png" alt="" class="h-20 w-auto" aria-hidden="true" />
         </a>
       </div>
     </section>
@@ -221,7 +221,7 @@ const addToCalendar = () => {
     <!-- SCHEDULE -->
     <section class="px-5 pb-14">
       <div class="relative mx-auto mb-10 max-w-[18rem] text-center">
-        <h2 class="font-script text-[clamp(2.4rem,5rem,10rem)] leading-[1.05] tracking-tighter">Raspored dana</h2>
+        <h2 class="font-script text-[clamp(2.4rem,4rem,10rem)] leading-[1.05]">Raspored dana</h2>
         <img src="/assets/scribble.png" alt="" class="mx-auto mt-1 w-[90%]" aria-hidden="true" />
       </div>
 
@@ -236,8 +236,8 @@ const addToCalendar = () => {
     <!-- DRAGI NAŠI -->
     <section class="px-5 pb-10">
       <div class="relative mx-auto mb-8 max-w-[14rem] text-center">
-        <h2 class="font-script text-[clamp(2.4rem,5rem,10rem)] leading-[1.05] tracking-tighter">Dragi naši</h2>
-        <img src="/assets/pen-line.svg" alt="" class="mx-auto mt-2 w-[70%]" aria-hidden="true" />
+        <h2 class="font-script text-[clamp(2.4rem,4rem,10rem)] leading-[1.05]">Dragi naši</h2>
+        <img src="/assets/scribble.png" alt="" class="mx-auto mt-2 w-[95%]" aria-hidden="true" />
       </div>
 
       <p class="font-typewriter mx-auto max-w-[22rem] text-center text-[0.95rem] leading-relaxed">
@@ -249,11 +249,11 @@ const addToCalendar = () => {
 
     <!-- RSVP -->
     <section class="px-5 pb-16 pt-8">
-      <img src="/assets/anja-i-luka.jpg" alt="Anja i Luka" class="letterbox w-full object-contain grayscale" />
+      <img src="/assets/anja-i-luka.jpg" alt="Anja i Luka" class="letterbox w-full object-contain" />
 
       <div class="relative mx-auto mt-12 mb-6 max-w-[20rem] text-center">
-        <p class="font-script text-[clamp(1.7rem,5rem,10rem)] leading-[1] tracking-tighter">
-          Molimo Vas da nam potvrdite dolazak do 31. Marta
+        <p class="font-script text-[clamp(1.7rem,4rem,10rem)] leading-[1]">
+          Molimo Vas da nam potvrdite dolazak do 01. Marta
         </p>
         <img src="/assets/scribble.png" alt="" class="mx-auto mt-2 w-[95%]" aria-hidden="true" />
       </div>
@@ -265,7 +265,7 @@ const addToCalendar = () => {
       <div class="flex justify-center">
         <button type="button" class="transition-transform active:scale-95" aria-label="Otvori potvrdu dolaska"
           @click="openModal">
-          <img src="/assets/rsvp-icon.png" alt="" class="h-16 w-auto opacity-90" />
+          <img src="/assets/rsvp-icon.png" alt="" class="h-20 w-auto opacity-90" />
         </button>
       </div>
     </section>
@@ -277,7 +277,7 @@ const addToCalendar = () => {
     </button>
 
     <div v-if="step === 'form'" class="flex flex-col items-center text-center">
-      <h2 class="font-script text-[clamp(2.4rem,3.4rem,4rem)] leading-[0.9] tracking-tighter">
+      <h2 class="font-script text-[clamp(2.4rem,3.4rem,4rem)] leading-[0.9]">
         Potvrda dolaska
       </h2>
       <img src="/assets/scribble.png" alt="" class="mt-1 mb-8 w-[70%]" aria-hidden="true" />
@@ -309,7 +309,7 @@ const addToCalendar = () => {
     </div>
 
     <div v-else class="flex flex-col items-center text-center">
-      <h2 class="font-script text-[clamp(2.4rem,3.4rem,4rem)] leading-[0.9] tracking-tighter">
+      <h2 class="font-script text-[clamp(2.4rem,3.4rem,4rem)] leading-[0.9]">
         Hvala vam
       </h2>
       <img src="/assets/scribble.png" alt="" class="mt-1 mb-6 w-[70%]" aria-hidden="true" />
@@ -363,17 +363,18 @@ button {
 }
 
 .lace-top {
-  top: -20px;
+  top: -17px;
+  transform: rotate(0.5deg);
 }
 
 .lace-bottom {
-  bottom: -20px;
-  transform: scaleY(-1);
+  bottom: -18px;
+  transform: scaleY(-1) rotate(-0.5deg);
 }
 
 .lace-side {
   top: 50%;
-  width: 90%;
+  width: 110%;
   height: 20px;
   object-fit: fill;
 }
