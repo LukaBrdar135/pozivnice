@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 
 const mapsUrl = 'https://maps.google.com/?cid=17048520087372756887'
 const formUrl = 'https://api.sheetmonkey.io/form/6tBMVmvJ24ZcXDCj31yvke'
@@ -13,6 +13,21 @@ const schedule = [
 ]
 
 const dialogRef = ref(null)
+const envelopeRef = ref(null)
+const envelopeOpen = ref(false)
+
+const updateEnvelope = () => {
+  const node = envelopeRef.value
+  if (!node) return
+
+  const rect = node.getBoundingClientRect()
+  const viewCenter = window.innerHeight * 0.5
+  const envelopeCenter = rect.top + rect.height / 2
+  const nearCenter = Math.abs(envelopeCenter - viewCenter) < window.innerHeight * 0.22
+
+  if (nearCenter || rect.bottom < viewCenter) envelopeOpen.value = true
+  else if (rect.top > viewCenter) envelopeOpen.value = false
+}
 const step = ref('form')
 const submitting = ref(false)
 const formData = ref({
@@ -39,6 +54,23 @@ const googleCalendarUrl = [
   `location=${encodeURIComponent(calendarEvent.location)}`,
   `details=${encodeURIComponent(calendarEvent.details)}`,
 ].join('&')
+
+onMounted(() => {
+  const node = envelopeRef.value
+  if (!node) return
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    envelopeOpen.value = true
+    return
+  }
+
+  updateEnvelope()
+  window.addEventListener('scroll', updateEnvelope, { passive: true })
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', updateEnvelope)
+})
 
 const openModal = () => {
   step.value = 'form'
@@ -133,7 +165,7 @@ const addToCalendar = () => {
       </h1>
 
       <img src="/assets/wedding-rings.svg" alt=""
-        class="pointer-events-none relative z-10 mx-auto mt-7 w-[4.75rem] rotate-[-8deg] opacity-80"
+        class="wedding-rings pointer-events-none relative z-10 mx-auto mt-7 w-[4.75rem]"
         aria-hidden="true" />
 
       <div class="mt-6 flex flex-1 items-center justify-center">
@@ -161,33 +193,36 @@ const addToCalendar = () => {
         aria-hidden="true" />
       <div class="absolute inset-0 bg-black/25" aria-hidden="true" />
 
-      <div class="relative mx-auto h-[420px] w-[min(92vw,360px)]">
-        <!-- Envelope -->
-        <img src="/assets/envelope.png" alt=""
-          class="absolute bottom-4 left-1/2 w-[80%] -translate-x-1/2 drop-shadow-lg" aria-hidden="true" />
-
-        <!-- Couple polaroid -->
-        <div
-          class="absolute top-8 -left-2 w-[48%] -rotate-[14deg] border-[8px] border-white bg-white shadow-[0_10px_24px_rgba(0,0,0,0.35)]">
-          <img src="/assets/couple-in-color.jpg" alt="" class="aspect-[4/5] w-full object-cover" aria-hidden="true" />
+      <div class="celebrate-stage relative mx-auto h-[420px] w-[min(92vw,360px)]" :class="{ 'is-open': envelopeOpen }">
+        <div ref="envelopeRef" class="envelope" aria-hidden="true">
+          <img src="/assets/envelope.png" alt="" class="env-sheet env-body" />
+          <div class="env-flap">
+            <img src="/assets/envelope.png" alt="" class="env-flap-inside" />
+          </div>
         </div>
 
-        <!-- Lace card -->
-        <div
-          class="lace-card absolute top-35 right-0 flex w-[58%] rotate-[12deg] flex-col items-center justify-center gap-3 px-5 py-9 text-center shadow-[0_10px_24px_rgba(0,0,0,0.28)]">
-          <img src="/assets/lace.png" alt="" class="lace-edge lace-top" aria-hidden="true" />
-          <img src="/assets/lace.png" alt="" class="lace-edge lace-bottom" aria-hidden="true" />
-          <img src="/assets/lace.png" alt="" class="lace-edge lace-side lace-left" aria-hidden="true" />
-          <img src="/assets/lace.png" alt="" class="lace-edge lace-side lace-right" aria-hidden="true" />
-          <p class="font-typewriter relative z-10 text-[0.8rem] font-bold tracking-wide uppercase">
-            April, 17.2027.
-          </p>
-          <p class="font-script relative z-10 text-[2.5rem] leading-[0.8]">
-            Hajde da proslavimo zajedno!!!
-          </p>
-          <p class="font-typewriter relative z-10 text-[0.8rem] font-bold tracking-wide uppercase">
-            Anja &amp; Luka
-          </p>
+        <div class="reveal reveal-photo">
+          <div class="border-[8px] border-white bg-white shadow-[0_10px_24px_rgba(0,0,0,0.35)]">
+            <img src="/assets/couple-in-color.jpg" alt="" class="aspect-[4/5] w-full object-cover" aria-hidden="true" />
+          </div>
+        </div>
+
+        <div class="reveal reveal-card">
+          <div class="lace-card flex flex-col items-center justify-center gap-3 px-5 py-9 text-center shadow-[0_10px_24px_rgba(0,0,0,0.28)]">
+            <img src="/assets/lace.png" alt="" class="lace-edge lace-top" aria-hidden="true" />
+            <img src="/assets/lace.png" alt="" class="lace-edge lace-bottom" aria-hidden="true" />
+            <img src="/assets/lace.png" alt="" class="lace-edge lace-side lace-left" aria-hidden="true" />
+            <img src="/assets/lace.png" alt="" class="lace-edge lace-side lace-right" aria-hidden="true" />
+            <p class="font-typewriter relative z-10 text-[0.8rem] font-bold tracking-wide uppercase">
+              April, 17.2027.
+            </p>
+            <p class="font-script relative z-10 text-[2.5rem] leading-[0.8]">
+              Hajde da proslavimo zajedno!!!
+            </p>
+            <p class="font-typewriter relative z-10 text-[0.8rem] font-bold tracking-wide uppercase">
+              Anja &amp; Luka
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -340,8 +375,154 @@ button {
   color: inherit;
 }
 
-.lace-card {
+.wedding-rings {
+  opacity: 0.8;
+  transform: rotate(-8deg);
+  transform-origin: center;
+  animation: rings-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes rings-pulse {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: rotate(-12deg) scale(0.92);
+  }
+
+  50% {
+    opacity: 1;
+    transform: rotate(-3deg) scale(1.12);
+  }
+}
+
+.celebrate-stage {
+  --env-hinge: 45%;
+  --env-hinge-ratio: 0.45;
+}
+
+.envelope {
   position: absolute;
+  bottom: 1rem;
+  left: 10%;
+  width: 80%;
+  aspect-ratio: 1273 / 1600;
+}
+
+.env-sheet,
+.env-flap-inside {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  max-width: none;
+}
+
+.env-body {
+  z-index: 4;
+  height: 100%;
+  object-fit: fill;
+  clip-path: inset(var(--env-hinge) 0 0 0);
+  filter: drop-shadow(0 12px 14px rgba(0, 0, 0, 0.28));
+}
+
+.env-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 6;
+  width: 100%;
+  height: var(--env-hinge);
+  overflow: visible;
+  transform-origin: center bottom;
+  transform: perspective(700px) rotateX(180deg);
+  transition:
+    transform 0.7s cubic-bezier(0.55, 0.02, 0.2, 1) 0.35s,
+    z-index 0s linear 0.35s;
+}
+
+.is-open .env-flap {
+  z-index: 2;
+  transform: perspective(700px) rotateX(0deg);
+  transition:
+    transform 0.8s cubic-bezier(0.55, 0.02, 0.2, 1),
+    z-index 0s linear 0.8s;
+}
+
+.env-flap-inside {
+  height: calc(100% / var(--env-hinge-ratio));
+  object-fit: fill;
+  object-position: top center;
+  clip-path: inset(0 0 55% 0);
+}
+
+.reveal {
+  position: absolute;
+  z-index: 5;
+  opacity: 0;
+}
+
+.reveal-photo {
+  top: 2rem;
+  left: -0.5rem;
+  width: 48%;
+  transform: translate(58%, 46%) rotate(2deg) scale(0.18);
+  transition:
+    transform 0.4s ease,
+    opacity 0.25s ease;
+}
+
+.reveal-card {
+  top: 8.75rem;
+  right: 0;
+  width: 58%;
+  transform: translate(-30%, -4%) rotate(-2deg) scale(0.16);
+  transition:
+    transform 0.4s ease,
+    opacity 0.25s ease;
+}
+
+.is-open .reveal-photo {
+  animation: pull-photo 1.15s cubic-bezier(0.22, 0.75, 0.2, 1) 0.78s both;
+}
+
+.is-open .reveal-card {
+  animation: pull-card 1.15s cubic-bezier(0.22, 0.75, 0.2, 1) 0.9s both;
+}
+
+@keyframes pull-photo {
+  0% {
+    opacity: 0;
+    transform: translate(58%, 46%) rotate(2deg) scale(0.18);
+  }
+
+  14% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(-14deg) scale(1);
+  }
+}
+
+@keyframes pull-card {
+  0% {
+    opacity: 0;
+    transform: translate(-30%, -4%) rotate(-2deg) scale(0.16);
+  }
+
+  14% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(12deg) scale(1);
+  }
+}
+
+.lace-card {
+  position: relative;
   background-color: #f5f0e6;
   background-image: url('/assets/card-paper.png');
   background-size: cover;
@@ -524,5 +705,24 @@ button {
   padding: 1.15rem 1rem 1.25rem;
   background: rgba(255, 255, 255, 0.38);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wedding-rings,
+  .env-flap,
+  .reveal-photo,
+  .reveal-card {
+    transition: none;
+    animation: none;
+  }
+
+  .is-open .reveal-photo {
+    opacity: 1;
+    transform: translate(0, 0) rotate(-14deg) scale(1);
+  }
+
+  .is-open .reveal-card {
+    transform: translate(0, 0) rotate(12deg) scale(1);
+  }
 }
 </style>
