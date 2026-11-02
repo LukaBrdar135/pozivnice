@@ -289,21 +289,17 @@ const addToCalendar = () => {
     <section class="px-5 pb-16 pt-8">
       <img src="/assets/anja-i-luka.jpg" alt="Anja i Luka" class="letterbox w-full object-contain" />
 
-      <div class="relative mx-auto mt-12 mb-6 max-w-[20rem] text-center">
-        <p class="font-script text-[clamp(1.7rem,4rem,10rem)] leading-[1]">
+      <div class="rsvp-prompt mx-auto mt-12 max-w-[22rem] text-center">
+        <p class="font-script text-[clamp(2.15rem,2.6rem,3rem)] leading-[0.95]">
           Molimo Vas da nam potvrdite dolazak do 01. Marta
         </p>
         <img src="/assets/scribble.png" alt="" class="mx-auto mt-2 w-[95%]" aria-hidden="true" />
-      </div>
-
-      <p class="font-typewriter mx-auto mb-6 max-w-[20rem] text-center text-[0.95rem] leading-relaxed">
-        Dolazak nam možete potvrditi putem koverte ispod:
-      </p>
-
-      <div class="flex justify-center">
-        <button type="button" class="transition-transform active:scale-95" aria-label="Otvori potvrdu dolaska"
-          @click="openModal">
-          <img src="/assets/rsvp-icon.png" alt="" class="h-20 w-auto opacity-90" />
+        <p class="rsvp-hint font-typewriter">
+          Dolazak nam možete potvrditi putem koverte ispod:
+        </p>
+        <button type="button" class="rsvp-open" aria-label="Otvori potvrdu dolaska" @click="openModal">
+          <img src="/assets/rsvp-icon.png" alt="" />
+          <span>Potvrdi dolazak</span>
         </button>
       </div>
     </section>
@@ -701,14 +697,70 @@ button {
   outline-offset: 2px;
 }
 
+.rsvp-prompt {
+  padding: 1.4rem 1.05rem 1.45rem;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1.5px solid #1a1a1a;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+}
+
+.rsvp-hint {
+  margin: 1.15rem auto 1rem;
+  max-width: 18rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.rsvp-open {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  min-width: 12.5rem;
+  padding: 0.35rem 1.2rem 0.75rem;
+  border: 2px solid #1a1a1a;
+  background: #f7f1e6;
+  color: #1a1a1a;
+  box-shadow: 0 4px 0 #1a1a1a;
+  font-family: var(--font-typewriter);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  animation: rsvp-nudge 2.2s ease-in-out infinite;
+}
+
+.rsvp-open img {
+  height: 4.4rem;
+  width: auto;
+}
+
+.rsvp-open:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #1a1a1a;
+}
+
+@keyframes rsvp-nudge {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.045);
+  }
+}
+
 .rsvp-btn {
   min-width: 12rem;
-  min-height: 2.75rem;
-  padding: 0.7rem 1.4rem;
-  border: 1.5px solid #1a1a1a;
-  background: rgba(255, 255, 255, 0.28);
+  min-height: 3.15rem;
+  padding: 0.8rem 1.4rem;
+  border: 2px solid #1a1a1a;
+  background: #1a1a1a;
+  color: #f3eee4;
   font-family: var(--font-typewriter);
-  font-size: 0.78rem;
+  font-size: 0.92rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -736,6 +788,7 @@ button {
 
 @media (prefers-reduced-motion: reduce) {
   .wedding-rings,
+  .rsvp-open,
   .env-flap,
   .reveal-photo,
   .reveal-card {
