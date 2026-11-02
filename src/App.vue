@@ -3,7 +3,6 @@ import { onMounted, onUnmounted, ref } from 'vue'
 
 const mapsUrl = 'https://maps.google.com/?cid=17048520087372756887'
 const formUrl = 'https://api.sheetmonkey.io/form/6tBMVmvJ24ZcXDCj31yvke'
-const nightSkyUrl = `${import.meta.env.BASE_URL}assets/sky.jpg`
 
 const schedule = [
   { time: '16H', text: 'DOLAZAK GOSTIJU U RESTORAN' },
@@ -149,7 +148,11 @@ const addToCalendar = () => {
 </script>
 
 <template>
-  <div class="invite mx-auto w-full max-w-md overflow-x-hidden text-ink">
+  <div class="paper-bg" aria-hidden="true">
+    <img src="/assets/paper-texture.jpg" alt="" />
+  </div>
+
+  <div class="invite relative z-10 mx-auto w-full max-w-md overflow-x-hidden text-ink">
     <!-- HERO -->
     <section class="relative flex min-h-[100svh] flex-col px-5 pb-10 pt-10">
       <h1
@@ -189,8 +192,8 @@ const addToCalendar = () => {
 
     <!-- CELEBRATE COLLAGE -->
     <section class="collage relative overflow-hidden py-16">
-      <div class="absolute inset-0 bg-cover bg-center" :style="{ backgroundImage: `url('${nightSkyUrl}')` }"
-        aria-hidden="true" />
+      <img src="/assets/sky.jpg" alt=""
+        class="pointer-events-none absolute inset-0 h-full w-full object-cover object-center" aria-hidden="true" />
       <div class="absolute inset-0 bg-black/25" aria-hidden="true" />
 
       <div class="celebrate-stage relative mx-auto h-[420px] w-[min(92vw,360px)]" :class="{ 'is-open': envelopeOpen }">
@@ -393,6 +396,30 @@ button {
     opacity: 1;
     transform: rotate(-3deg) scale(1.12);
   }
+}
+
+.paper-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100lvh;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+.paper-bg img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
 }
 
 .celebrate-stage {

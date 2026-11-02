@@ -1,20 +1,6 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: "Beautifully Delicious";
-  src:
-    local("Beautifully Delicious Script Regular"),
-    local("Beautifully-Delicious-Script-Regular"),
-    url("BDScript-Regular.woff2") format("woff2"),
-    url("BDScript-Regular.woff") format("woff"),
-    url("BDScript-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
 @theme {
-  /* --font-script: "Beautifully Delicious", cursive; */
   --font-script: "Italianno", cursive;
   --font-typewriter: "Special Elite", "Courier New", Courier, monospace;
   --color-ink: #1a1a1a;
@@ -33,10 +19,6 @@ body {
   margin: 0;
   color: var(--color-ink);
   background-color: var(--color-paper);
-  background-image: url("/assets/paper-texture.jpg");
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
   font-family: var(--font-typewriter);
   overflow-x: hidden;
 }
